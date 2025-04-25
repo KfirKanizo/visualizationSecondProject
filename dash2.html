@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMate - דשבורד ניהול 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4a69bd 0%, #6a89cc 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(245, 245, 245, 0.8);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .description {
+            color: #666;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tableau-container {
+            width: 100%;
+            height: 600px;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+        }
+
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .tableau-container {
+                height: 400px;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AutoMate - דשבורד ניהול 2 📊</h1>
+            <p class="description">תובנות ויזואליות לניהול יעיל של ביצועים פיננסיים</p>
+        </header>
+
+        <section class="section">
+            <h2>תיאור המערכת</h2>
+            <p class="description">
+                מערכת AutoMate מספקת כלי ויזואליזציה מתקדמים לניתוח נתונים עסקיים. דשבורד ניהול 2 מתמקד בביצועים פיננסיים, כולל ניתוח רווחיות, תמחור שירותים והשוואת ביצועים בין ערוצי הפצה שונים.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>משמעות הגרף</h2>
+            <p class="description">
+                הדשבורד מציג ניתוח של רווחיות לפי סוגי שירותים (שיווק, פיננסי, תפעולי) ומדגיש את ההשפעה של ערוצי הפצה (אתר, סוכנים, שותפים, פרסומות) על ההכנסות. הגרף מאפשר זיהוי שירותים וערוצים בעלי ביצועים גבוהים, תוך מתן תובנות לשיפור התמחור והאסטרטגיה השיווקית.
+            </p>
+            <div class="tableau-container">
+                <iframe 
+                    src="https://public.tableau.com/views/_17455658984790/Dashboard3?:language=en-US&:display_count=n&:origin=viz_share_link&:showVizHome=no&:embed=true"
+                    width="100%"
+                    height="100%"
+                    frameborder="0">
+                </iframe>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>חזרה לעמוד הראשי</h2>
+            <a href="index.html" class="back-btn">חזור לעמוד הבית</a>
+        </section>
+    </div>
+
+    <script>
+        // Animate sections on scroll
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease-in both';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Button click animation
+        document.querySelector('.back-btn').addEventListener('click', (e) => {
+            e.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                e.target.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
