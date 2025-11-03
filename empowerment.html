@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חיזוק אישי לגבר</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: right; /* יישור הטקסט לימין עבור עברית */
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        #quote-display {
+            min-height: 100px; /* גובה מינימלי להצגת המשפט */
+            font-size: 1.4em;
+            color: #007bff;
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #generate-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #generate-button:hover {
+            background-color: #218838;
+        }
+
+        #generate-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ המנה היומית שלך לחיזוק ✨</h1>
+        <div id="quote-display">לחץ על הכפתור כדי לקבל משפט השראה.</div>
+        <button id="generate-button">קבל משפט מעצים</button>
+    </div>
+
+    <script>
+        const quotes = [
+            "זהו סוף של פרק, לא סוף הסיפור. הפרק הטוב ביותר שלך עדיין לפניך.",
+            "הכאב הוא זמני. הגבר שאתה הופך להיות - הוא לנצח.",
+            "שמור על הכבוד שלך ואל תאבד את עצמך במאבק. אתה ראוי לשקט ולשלווה.",
+            "הילדים שלך צריכים אבא חזק, יציב ואוהב. זאת המשימה החשובה ביותר שלך עכשיו.",
+            "היכולת שלך לאהוב ולהיות נאהב לא אבדה. היא רק מחכה לרגע הנכון.",
+            "כל החלטה שאתה מקבל היום היא השקעה בעתיד טוב יותר עבורך ועבור ילדיך.",
+            "אל תיתן לכעס או לתסכול לנהל אותך. אתה חזק מספיק כדי לנהל אותם.",
+            "הזמן הוא חבר שלך. הוא מרפא, מבהיר ומביא איתו הזדמנויות חדשות.",
+            "אבהות היא לא סטטוס, היא מחויבות יומיומית. המשך להשקיע בנוכחות שלך.",
+            "הגבולות שאתה מציב היום הם הבסיס לחיים בריאים ומאושרים יותר מחר.",
+            "אף אחד לא יכול לקחת ממך את מה שלמדת על עצמך בתהליך הזה. זאת העוצמה שלך.",
+            "היושר הפנימי שלך הוא המצפן. סמוך על האינסטינקטים שלך ובחר בדרך הנכונה לך.",
+            "אם אתה צריך לבכות – תבכה. גברים חזקים מרשים לעצמם להרגיש הכל.",
+            "אל תשווה את ההתחלה החדשה שלך לאמצע החיים של מישהו אחר. זה המרוץ שלך.",
+            "השקט הפנימי שווה יותר מכל ויכוח. בחר בחוכמה ובשלום על פני דרמה.",
+            "כל יום הוא הזדמנות קטנה לבנות מחדש את החיים שאתה באמת רוצה לחיות.",
+            "הגדר מחדש את המשמעות של 'בית' עבורך. זה המקום שבו אתה מרגיש בטוח ואהוב.",
+            "אתה לא לבד. פתח את עצמך למעגל תמיכה של חברים, משפחה או אנשי מקצוע.",
+            "אם אתה מטפל בעצמך היטב, אתה יכול לטפל טוב יותר בילדיך. דאג לרווחתך.",
+            "גירושין הם כלי ניקוי רב עוצמה. הם מנקים את מה שלא עובד, כדי שתוכל לבנות טוב יותר."
+        ];
+
+        const quoteDisplay = document.getElementById('quote-display');
+        const button = document.getElementById('generate-button');
+        let lastIndex = -1;
+
+        function getRandomQuote() {
+            let randomIndex;
+            // ודא שהמשפט החדש אינו זהה למשפט הקודם (ככל האפשר)
+            do {
+                randomIndex = Math.floor(Math.random() * quotes.length);
+            } while (randomIndex === lastIndex && quotes.length > 1);
+            
+            lastIndex = randomIndex;
+            quoteDisplay.textContent = quotes[randomIndex];
+        }
+
+        button.addEventListener('click', getRandomQuote);
+
+        // הצגת משפט ראשוני עם טעינת הדף
+        getRandomQuote();
+    </script>
+</body>
+</html>
